@@ -51,7 +51,7 @@ function Home() {
           <div className="navbar-brand">MyApp</div>
           <div className="navbar-user" id="nav">
             <div className="photo">
-              <img src="" alt="" />
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" />
             </div>
             <span className="username">{user ? `Hello, ${user}` : "Loading..."}</span>
            <Link to={"/login"}> <a href="./pages/login.html" className="logout-button">login</a></Link>
