@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import apiPath from "./path";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function Login() {
   const [data, setData] = useState({ email: "", password: "" });
@@ -17,31 +19,32 @@ function Login() {
         const { token, msg } = res.data; 
         if (token) {
           console.log("Token received:", token);
-          sessionStorage.setItem("token", token);
-          alert(msg || "Login successful!");
+          localStorage.setItem("token", token);
+          toast.success(msg, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            }); 
           setData({ email: "", password: "" });
-          navigate("/");
-        } else {
-          alert("Login successful, but no token was received.");
-        }
+          setTimeout(() => navigate("/"), 3000);
+        } 
       } else {
-        alert(res.data?.msg || "Login failed. Please try again.");
+        alert("Login failed. Please try again.");
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      const errorMsg = error.response?.data?.msg || "An error occurred during login. Please try again.";
-      alert(errorMsg);
+      alert(error)
     }
   };
 
   return (
     <>
-      <nav className="navbar">
-        <div className="navbar-container">
-          <div className="navbar-brand">MyApp</div>
-        </div>
-      </nav>
-
+      
+      <ToastContainer />
       <div className="form-container">
         <h2>Login</h2>
         <form className="login-form" id="form" onSubmit={handleSubmit}>
@@ -68,6 +71,7 @@ function Login() {
             />
           </div>
           <button type="submit" className="submit-button">Login</button>
+          
         </form>
         <span>
           Don't have an account?{" "}

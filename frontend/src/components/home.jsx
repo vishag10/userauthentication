@@ -6,17 +6,29 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import apiPath from "./path";
 import { useEffect } from "react";
-function Home() {
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
+
+function Home({setID}){ 
   const navigate = useNavigate();  
-  let [user, setUser] = useState("user");
+  let [user, setUser] = useState(null);
   
  const getUser=async()=>{
-  const token=sessionStorage.getItem("token");
+  const token=localStorage.getItem("token");
   console.log(user);
   
   if (!token) {
-    alert("No token found. Redirecting to login.");
-    navigate("/login"); 
+    toast.error('no token found! redirect to login', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+    setTimeout(() => navigate("/login"), 3000); 
     return;
   }
 
@@ -31,6 +43,7 @@ function Home() {
         console.log(res.data.username);
         const name=res.data.username
         setUser(name);
+        setID(name);
         
       }
   } catch (error) {
@@ -46,7 +59,8 @@ function Home() {
 
   return (
     <>
-      <nav className="navbar">
+      <ToastContainer />
+      {/* <nav className="navbar">
         <div className="navbar-container">
           <div className="navbar-brand">MyApp</div>
           <div className="navbar-user" id="nav">
@@ -57,7 +71,7 @@ function Home() {
            <Link to={"/login"}> <a href="./pages/login.html" className="logout-button">login</a></Link>
           </div>
         </div>
-      </nav>
+      </nav> */}
     </>
   );
 }

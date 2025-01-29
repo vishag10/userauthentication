@@ -28,11 +28,7 @@ function Register() {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="navbar-container">
-          <div className="navbar-brand">MyApp</div>
-        </div>
-      </nav>
+      
 
       <div className="form-container">
         <h2>Register</h2>
