@@ -3,9 +3,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import apiPath from "./path";
+import apiPath from "../path";
 import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
+ 
 
 function Login() {
   const [data, setData] = useState({ email: "", password: "" });

@@ -1,6 +1,6 @@
 import "./register.css";
 import axios from "axios";
-import apiPath from "./path";
+import apiPath from "../path";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 

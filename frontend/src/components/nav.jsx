@@ -1,12 +1,10 @@
 import React from "react";
 import "./home.css"
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-function Nav({user}){
+function Nav({user,setID}){
     const logOut=()=>{
         localStorage.removeItem("token");
-       window.location.reload();
+        setID(null);
     }
     return(
         <>
